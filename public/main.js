@@ -6,6 +6,12 @@ $(document).ready(function () {
 
     var first_name = $('#first_name').val();
 
+    var last_name = $('#last_name').val();
+
+    var gender = $('input[name="gender"]:checked').val();
+
+    var interest = $('input[name="interest"]:checked').val();
+
     // $.ajax('find.html' , {
     //     methot: 'post',
     //     data: {
@@ -14,9 +20,15 @@ $(document).ready(function () {
     // });
 
   // methot   url       nombre parm.   valor param.
-    $.get('find.html', {'first_name' : first_name});
-
     $.post('find.html', {'first_name' : first_name});
+
+    //$.get('find.html', {'first_name' : first_name}); for get
+
+    $.post('find.html', {'last_name' : last_name});
+
+    $.post('find.html', {'gender' : gender});
+
+    $.post('find.html', {'interest' : interest});
 
   });
 })
