@@ -10,25 +10,42 @@ $(document).ready(function () {
 
     var gender = $('input[name="gender"]:checked').val();
 
-    var interest = $('input[name="interest"]:checked').val();
+    var interest = $('input[name="interest"]:checked'); // array
 
-    // $.ajax('find.html' , {
-    //     methot: 'post',
-    //     data: {
-    //         'first_name' : first_name
-    //     }
-    // });
+    var payload = {
+        'first_name' : first_name,
+        'last_name' : last_name,
+        'gender' : gender,
+        'interest' : interest.map(function(i, element){
+            return $(element).val();
+        }).get()
+    }
 
-  // methot   url       nombre parm.   valor param.
-    $.post('find.html', {'first_name' : first_name});
+    // debugger
 
-    //$.get('find.html', {'first_name' : first_name}); for get
+    $.ajax('/find' , {
+        method: 'post',
+        data: payload
+    });
 
-    $.post('find.html', {'last_name' : last_name});
+    $.ajax('/find' , {
+        method: 'get',
+        data: payload
+    });
 
-    $.post('find.html', {'gender' : gender});
 
-    $.post('find.html', {'interest' : interest});
+
+
+    // methot   url       nombre parm.   valor param.
+    // $.post('find.html', {'first_name' : first_name});
+    //
+    // //$.get('find.html', {'first_name' : first_name}); for get
+    //
+    // $.post('find.html', {'last_name' : last_name});
+    //
+    // $.post('find.html', {'gender' : gender});
+    //
+    // $.post('find.html', {'interest' : interest});
 
   });
 })
